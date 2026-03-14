@@ -2,6 +2,12 @@ import pytest
 from pathlib import Path
 import shutil
 import tempfile
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env
+load_dotenv()
+
 from src.brain.embedder import PinneoEmbedder
 from src.brain.retriever import get_context, RetrievalResult
 from src.brain.chroma_client import get_chroma_client
@@ -9,16 +15,22 @@ from config import COLLECTION_PINNEO_BRAIN
 
 @pytest.fixture(scope="module")
 def test_chroma_path():
-    """Create a temporary directory for ChromaDB."""
-    tmp_dir = Path(tempfile.mkdtemp())
+    """Create a temporary directory for ChromaDB within the project root."""
+    from config import ROOT_DIR
+    tmp_dir = ROOT_DIR / "data" / "test_chroma"
+    if tmp_dir.exists():
+        shutil.rmtree(tmp_dir)
+    tmp_dir.mkdir(parents=True, exist_ok=True)
     yield tmp_dir
     if tmp_dir.exists():
         shutil.rmtree(tmp_dir)
 
 @pytest.fixture(autouse=True)
 def mock_chroma_path(test_chroma_path, monkeypatch):
-    """Override CHROMA_DB_PATH in config for all tests."""
+    """Override CHROMA_DB_PATH in config for all tests and reset client."""
     monkeypatch.setattr("config.CHROMA_DB_PATH", test_chroma_path)
+    from src.brain.chroma_client import _reset_chroma_client
+    _reset_chroma_client()
 
 def test_pinneo_brain_end_to_end():
     """
