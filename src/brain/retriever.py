@@ -1,9 +1,17 @@
 """
 Partner OS — Pinneo Brain Retriever
 ===================================
+
+**Principal's Summary:**
+The Retriever is the "Search Engine" for the Brain. When an agent (like the Manager) 
+needs advice, it asks the Retriever. This tool looks through all the wisdom 
+stored in the Brain, finds the most relevant advice, and presents it with 
+clear citations so you can verify the source.
+
+**Integration Note:**
 Provides a hybrid-like retrieval interface over ChromaDB.
 Combines semantic (dense) search with keyword-based scoring to 
-ensure high-signal wisdom citations.
+ensure high-signal wisdom citations. Primary context source for all agent LLM calls.
 """
 
 from typing import List, Dict, Optional

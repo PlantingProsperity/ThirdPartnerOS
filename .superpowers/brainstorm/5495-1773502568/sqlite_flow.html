@@ -1,0 +1,57 @@
+<div class="mockup">
+  <div class="mockup-header">SQLite: The Shared State Bus</div>
+  <div class="mockup-body">
+    <div style="display:flex; flex-direction:column; gap:20px; align-items:center;">
+      <div style="display:flex; justify-content:space-around; width:100%;">
+        <div style="border:1px solid #ccc; padding:10px; border-radius:5px; background:#eef;">
+          <b>Librarian</b><br><small>Writes: files, deal_index</small>
+        </div>
+        <div style="border:1px solid #ccc; padding:10px; border-radius:5px; background:#fee;">
+          <b>CFO</b><br><small>Writes: financials</small>
+        </div>
+        <div style="border:1px solid #ccc; padding:10px; border-radius:5px; background:#efe;">
+          <b>Scout</b><br><small>Writes: property_records</small>
+        </div>
+      </div>
+      
+      <div style="font-size:32px;">&darr;</div>
+      
+      <div style="border:3px solid #333; padding:20px; border-radius:10px; background:#f9f9f9; text-align:center; width:60%;">
+        <h3>SQLite (partner_os.db)</h3>
+        <p>Single Source of Truth for Operational Data</p>
+      </div>
+      
+      <div style="font-size:32px;">&darr;</div>
+      
+      <div style="display:flex; justify-content:space-around; width:100%;">
+        <div style="border:1px solid #ccc; padding:10px; border-radius:5px; background:#fef;">
+          <b>Profiler</b><br><small>Reads: scout_reports, files</small>
+        </div>
+        <div style="border:1px solid #ccc; padding:10px; border-radius:5px; background:#ffe;">
+          <b>Manager</b><br><small>Reads: All Tables & Brain</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Question: Database Access Pattern</h3>
+  <p>Should we use a <b>Singleton Pattern</b> for the database connection helper to ensure all agents share the same WAL-enabled connection?</p>
+  <div class="options">
+    <div class="option" data-choice="singleton" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>Singleton Helper (Recommended)</h3>
+        <p>One shared connection with context managers. Safe for multi-agent writes in Zsh/CLI.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="per-call" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>Per-Call Connections</h3>
+        <p>Open/Close on every query. Simpler but higher overhead and lock risk during heavy sweeps.</p>
+      </div>
+    </div>
+  </div>
+</div>

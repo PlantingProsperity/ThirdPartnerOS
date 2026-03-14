@@ -1,6 +1,14 @@
 """
 Partner OS — Pinneo Brain Embedder
 ==================================
+
+**Principal's Summary:**
+The Embedder is the system's "Reading Engine." It takes the documents you upload 
+(transcripts, PDFs, etc.) and translates them into a language the AI can understand. 
+It is "incremental," meaning it remembers which files it has already read and 
+only processes new or changed documents, saving both time and API costs.
+
+**Integration Note:**
 Handles the incremental ingestion of knowledge material into ChromaDB.
 Processes Markdown and PDF files, generates Gemini embeddings, and
 manages SHA-256 hashes to prevent redundant processing.
