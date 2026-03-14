@@ -1,0 +1,45 @@
+<div class="mockup">
+  <div class="mockup-header">Pinneo Brain Architecture: Hybrid Search Loop</div>
+  <div class="mockup-body">
+    <div style="display:flex; justify-content:space-around; align-items:center; height:300px;">
+      <div style="border:2px solid #ccc; padding:20px; border-radius:10px; width:25%;">
+        <h4>Ingestion</h4>
+        <p>.md Files &rarr; Markdown Chunks &rarr; text-embedding-004</p>
+      </div>
+      <div style="font-size:24px;">&rarr;</div>
+      <div style="border:2px solid #333; padding:20px; border-radius:10px; width:30%; background:#f9f9f9;">
+        <h4>Memsearch Hybrid Interface</h4>
+        <ul>
+          <li>Dense (Semantic)</li>
+          <li>Sparse (BM25 Keyword)</li>
+          <li>Reranking Model</li>
+        </ul>
+      </div>
+      <div style="font-size:24px;">&rarr;</div>
+      <div style="border:2px solid #ccc; padding:20px; border-radius:10px; width:25%;">
+        <h4>ChromaDB (Backend)</h4>
+        <p>pinneo_brain<br>reference_library</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <h3>Question: Chunking Strategy</h3>
+  <p>Should we use <b>Markdown-aware splitting</b> to keep headers and their related paragraphs together?</p>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="semantic" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>Markdown-Aware (Recommended)</h3>
+        <p>Preserves hierarchy and context by splitting at headers.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="fixed" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>Fixed-Size</h3>
+        <p>Rigid 1000-token chunks with 100-token overlap. Faster, but might break sentences.</p>
+      </div>
+    </div>
+  </div>
+</div>

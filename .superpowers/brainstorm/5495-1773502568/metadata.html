@@ -1,0 +1,47 @@
+<div class="mockup">
+  <div class="mockup-header">Pinneo Brain: Metadata & Collection Design</div>
+  <div class="mockup-body">
+    <table style="width:100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background:#eee;">
+          <th style="padding:10px; border:1px solid #ccc;">Collection</th>
+          <th style="padding:10px; border:1px solid #ccc;">Metadata Fields</th>
+          <th style="padding:10px; border:1px solid #ccc;">Source Material</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px; border:1px solid #ccc;"><b>pinneo_brain</b></td>
+          <td style="padding:10px; border:1px solid #ccc;">source, headings, category:WISDOM, deal_outcome_id (for learned outcomes)</td>
+          <td style="padding:10px; border:1px solid #ccc;">docs/knowledge/Pinneo/, CCIM/</td>
+        </tr>
+        <tr>
+          <td style="padding:10px; border:1px solid #ccc;"><b>reference_library</b></td>
+          <td style="padding:10px; border:1px solid #ccc;">source, section, category:REFERENCE, jurisdiction (e.g. Clark County)</td>
+          <td style="padding:10px; border:1px solid #ccc;">docs/knowledge/City of Vancouver/, Clark County/</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Question: Ingestion Strategy</h3>
+  <p>How should the <b>embedder.py</b> handle updates to the knowledge base?</p>
+  <div class="options">
+    <div class="option" data-choice="wipe" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>Wipe & Re-index (Simpler)</h3>
+        <p>Clear the collection and re-embed everything. Best for initial development and medium datasets.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="incremental" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>Incremental (Hash-based)</h3>
+        <p>Check SHA-256 hashes of chunks/files. Only update what has changed. Prevents duplicate work.</p>
+      </div>
+    </div>
+  </div>
+</div>

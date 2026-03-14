@@ -1,0 +1,68 @@
+# =============================================================================
+# Partner OS — Python Dependencies
+# Verified: Python 3.11+ / Debian 13.3 / March 2026
+# =============================================================================
+#
+# INSTALLATION ORDER MATTERS — follow these steps exactly:
+#
+# Step 1: Install PyTorch CPU-only FIRST (prevents 2GB+ CUDA download)
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#
+# Step 2: Install all remaining dependencies
+#   pip install -r requirements.txt
+#
+# Step 3: Install Playwright browser binaries
+#   playwright install chromium
+#
+# Step 4: After everything installs cleanly, pin exact versions:
+#   pip freeze > requirements-lock.txt
+#
+# NOTE: torch is intentionally absent from this file.
+#       It must be installed via the CPU-only index URL in Step 1.
+#       If torch is installed from PyPI directly it will pull CUDA
+#       binaries incompatible with this machine (GTX 580 / nouveau driver).
+# =============================================================================
+
+# --- Google Gen AI SDK (current, non-deprecated SDK) -------------------------
+# Import: from google import genai
+# Do NOT use google-generativeai — it is deprecated as of November 2025
+google-genai>=1.0.0
+
+# --- Google Auth (OAuth credentials for Gemini API) --------------------------
+google-auth>=2.49.0
+google-auth-oauthlib>=1.3.0
+
+# --- Google Drive API --------------------------------------------------------
+google-api-python-client>=2.160.0
+
+# --- Vector Database (Pinneo Brain) ------------------------------------------
+# Local, no server required. Two collections: pinneo_brain, reference_library
+chromadb>=1.5.5
+
+# --- Audio Transcription (CPU mode only) -------------------------------------
+# Requires torch (CPU) installed first — see Step 1 above
+openai-whisper>=20250625
+
+# --- UI (V0.1 Frontend) ------------------------------------------------------
+# Pure Python. No JavaScript. No build pipeline. Runs in local browser tab.
+streamlit>=1.55.0
+
+# --- Web Scraping (Scout agent) ----------------------------------------------
+playwright>=1.49.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+
+# --- Data Processing ---------------------------------------------------------
+pandas>=2.2.0
+
+# --- Document Generation (LOIs, Strategy Briefs) -----------------------------
+python-docx>=1.1.0
+
+# --- PDF Parsing (Librarian — financial documents, OMs, title reports) -------
+pdfplumber>=0.11.0
+
+# --- Utilities ---------------------------------------------------------------
+# hashlib: standard library — SHA-256 content hashing for duplicate detection
+# sqlite3: standard library — no install needed
+# pathlib: standard library — no install needed
+# logging: standard library — no install needed

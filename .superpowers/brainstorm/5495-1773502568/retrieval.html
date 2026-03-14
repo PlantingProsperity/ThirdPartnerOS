@@ -1,0 +1,45 @@
+<div class="mockup">
+  <div class="mockup-header">Pinneo Brain: Retrieval & Citation Flow</div>
+  <div class="mockup-body">
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="mock-nav" style="padding:10px; background:#f0f0f0;">
+        Query: "How do I handle a seller who is emotionally attached to their property?"
+      </div>
+      
+      <div style="display:flex; gap:20px;">
+        <div style="flex:1; border:1px dashed #999; padding:15px; border-radius:8px;">
+          <h4 class="label">Step 1: Hybrid Retrieval</h4>
+          <p style="font-size:0.9em;">Memsearch runs <b>Dense</b> (Semantic) + <b>Sparse</b> (BM25 Keyword) searches in parallel over ChromaDB.</p>
+        </div>
+        <div style="flex:1; border:1px dashed #999; padding:15px; border-radius:8px;">
+          <h4 class="label">Step 2: Reranking</h4>
+          <p style="font-size:0.9em;">Results are merged and reranked to prioritize the most relevant "Wisdom" chunks first.</p>
+        </div>
+      </div>
+
+      <div class="mockup" style="background:white; border:1px solid #333;">
+        <div class="mockup-header" style="background:#333; color:white;">Final Result for Agent</div>
+        <div class="mockup-body" style="font-family:monospace; font-size:0.85em;">
+          [1] "The emotional seller is often looking for a bridge, not just a price..." <br>
+          <b>Source: Pinneo/Masters Series/04_Foundations.md | Section: Emotional Bridges</b><br><br>
+          [2] "Logic makes people think; emotion makes them act..." <br>
+          <b>Source: Pinneo/Negotiations That Pay/Part 1.md | Section: The Psychology of Action</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Final Design Approval</h3>
+  <p>The Pinneo Brain design is now complete, covering Ingestion (Hash-based), Storage (ChromaDB), and Retrieval (Memsearch Hybrid).</p>
+  <div class="options">
+    <div class="option" data-choice="approve" onclick="toggleSelect(this)">
+      <div class="letter">✓</div>
+      <div class="content">
+        <h3>Approve Design</h3>
+        <p>I am ready to proceed to the implementation plan for Sprint 1A.</p>
+      </div>
+    </div>
+  </div>
+</div>
