@@ -24,13 +24,13 @@ def extract_pdf_text(pdf_path: str) -> str:
         Exception: For other extraction errors.
     """
     log.debug(f"Extracting text from PDF: {pdf_path}")
-    text = ""
+    text_parts = []
     try:
         with pdfplumber.open(pdf_path) as pdf:
             for page in pdf.pages:
                 page_text = page.extract_text()
                 if page_text:
-                    text += page_text + "\n"
+                    text_parts.append(page_text + "\n")
     except FileNotFoundError:
         log.error(f"PDF file not found: {pdf_path}")
         raise
@@ -38,4 +38,4 @@ def extract_pdf_text(pdf_path: str) -> str:
         log.error(f"Error extracting text from {pdf_path}: {e}")
         raise
         
-    return text
+    return "".join(text_parts)
