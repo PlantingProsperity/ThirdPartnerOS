@@ -1,0 +1,33 @@
+# Partner OS — .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+
+# Data — never commit the database or vector store
+data/
+*.db
+*.sqlite
+
+# Logs
+logs/
+
+# Deal Jackets — contain sensitive client data, never commit
+deals/
+
+# Staging — transient inbound files
+staging/
+
+# Knowledge base — large files, managed separately
+knowledge/
+
+# Streamlit
+.streamlit/
+
+# OS
+.DS_Store
+Thumbs.db

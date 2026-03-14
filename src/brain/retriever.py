@@ -8,10 +8,9 @@ ensure high-signal wisdom citations.
 
 from typing import List, Dict, Optional
 from dataclasses import dataclass
-from google import genai
-import google.auth
 from src.brain.chroma_client import get_chroma_client
 from src.utils.logger import get_logger
+from src.utils.genai_client import get_genai_client
 from config import (
     COLLECTION_PINNEO_BRAIN, 
     RAG_TOP_K, 
@@ -46,13 +45,12 @@ def get_context(
         collection = client.get_collection(collection_name)
         
         # Initialize Gemini Client
-        credentials, _ = google.auth.default()
-        genai_client = genai.Client(credentials=credentials)
+        genai_client = get_genai_client()
         
         # 1. Generate Query Embedding
         response = genai_client.models.embed_content(
             model=GEMINI_EMBEDDING_MODEL,
-            content=query
+            contents=query
         )
         query_embedding = response.embeddings[0].values
         

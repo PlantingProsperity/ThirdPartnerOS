@@ -15,6 +15,7 @@ from src.brain.chroma_client import get_chroma_client
 from src.utils.pdf_utils import extract_pdf_text
 from src.utils.text_utils import chunk_markdown
 from src.utils.logger import get_logger
+from src.utils.genai_client import get_genai_client
 from config import (
     CHUNK_SIZE, 
     CHUNK_OVERLAP, 
@@ -31,11 +32,8 @@ class PinneoEmbedder:
     
     def __init__(self):
         self.client = get_chroma_client()
-        
-        # Initialize Gemini Client using OAuth credentials
-        credentials, _ = google.auth.default()
-        self.genai_client = genai.Client(credentials=credentials)
-        log.info("PinneoEmbedder initialized with Gemini API (OAuth)")
+        self.genai_client = get_genai_client()
+        log.info("PinneoEmbedder initialized with Gemini API")
 
     def _get_file_hash(self, file_path: Path) -> str:
         """Calculates the SHA-256 hash of a file's contents."""
@@ -82,7 +80,13 @@ class PinneoEmbedder:
                 continue
 
             # Convert relative path for metadata
-            rel_path = str(file_path.relative_to(ROOT_DIR))
+            # Ensure we are using absolute paths for relative_to calculation
+            abs_file_path = file_path.resolve()
+            try:
+                rel_path = str(abs_file_path.relative_to(ROOT_DIR.resolve()))
+            except ValueError:
+                # Fallback if file is outside ROOT_DIR (e.g. in /tmp during tests)
+                rel_path = file_path.name
             
             # Chunk the text
             chunks = chunk_markdown(
@@ -101,7 +105,7 @@ class PinneoEmbedder:
                     # Generate embedding via text-embedding-004
                     response = self.genai_client.models.embed_content(
                         model=GEMINI_EMBEDDING_MODEL,
-                        content=chunk["text"]
+                        contents=chunk["text"]
                     )
                     embedding = response.embeddings[0].values
                     

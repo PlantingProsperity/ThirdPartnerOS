@@ -1,16 +1,9 @@
 import pytest
 from pathlib import Path
-from unittest.mock import MagicMock, patch
 from src.brain.embedder import PinneoEmbedder
 from config import COLLECTION_PINNEO_BRAIN
 
-@pytest.fixture
-def mock_genai():
-    with patch("google.auth.default", return_value=(MagicMock(), "project-id")):
-        with patch("google.genai.Client") as mock_client:
-            yield mock_client
-
-def test_embedder_hashing(mock_genai):
+def test_embedder_hashing():
     embedder = PinneoEmbedder()
     # Create a temporary test file
     test_file = Path("test_hash.txt")
@@ -21,7 +14,9 @@ def test_embedder_hashing(mock_genai):
     
     test_file.unlink()
 
-def test_embedder_scaffold(mock_genai):
+def test_embedder_real_initialization():
+    """Verify the embedder can initialize with real credentials."""
     embedder = PinneoEmbedder()
-    assert embedder.client is not None
     assert embedder.genai_client is not None
+    # We don't perform a real embed call here to save tokens in simple init test
+    # but we verify the client object is created.

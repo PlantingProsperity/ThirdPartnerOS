@@ -86,9 +86,9 @@ GEMINI_GENERATION_MODEL: str = os.environ.get(
 )
 """Primary generation model. Override via PARTNER_OS_GEMINI_MODEL env var."""
 
-GEMINI_EMBEDDING_MODEL: str = "models/text-embedding-004"
+GEMINI_EMBEDDING_MODEL: str = "models/gemini-embedding-001"
 """Embedding model used to generate vectors for ChromaDB.
-Do not change — text-embedding-004 is the current standard Gemini embedder."""
+Verified for standard Gemini API keys."""
 
 
 # =============================================================================
