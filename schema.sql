@@ -1,16 +1,16 @@
 -- =============================================================================
 -- Partner OS — SQLite Database Schema
 -- =============================================================================
--- This file is the authoritative definition of all tables in partner_os.db.
--- It is executed once on first run by src/database/db.py to initialize the
--- database. All schema changes must be made here and applied via migration.
 --
--- Conventions:
---   - All primary keys are INTEGER (SQLite rowid alias) unless noted.
---   - All timestamps are TEXT in ISO 8601 format: YYYY-MM-DD HH:MM:SS
---   - All status fields use the string constants defined in config.py.
---   - All file paths are stored as absolute path strings.
---   - Foreign key constraints are enforced (PRAGMA foreign_keys = ON).
+-- **Principal's Summary:**
+-- This is the "Blueprint" for the system's Shared Notebook. It defines every 
+-- piece of information we care about: deal addresses, parcel numbers, seller 
+-- archetypes, and financial calculations. If it's important to your business, 
+-- there is a place for it here.
+--
+-- **Integration Note:**
+-- Authoritative definition of all tables in partner_os.db. 
+-- Executed by src/database/db.py:init_db() during system initialization.
 -- =============================================================================
 
 PRAGMA foreign_keys = ON;

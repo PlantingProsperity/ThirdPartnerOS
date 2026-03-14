@@ -1,8 +1,16 @@
 """
 Partner OS — GenAI Client Factory
 =================================
+
+**Principal's Summary:**
+This is the system's "Communications Hub" for talking to Google's AI models. 
+It securely handles the credentials (keys) needed to use the Gemini AI, ensuring 
+that all agents can talk to the brain securely and reliably.
+
+**Integration Note:**
 Centralized initialization for the Google GenAI SDK.
-Supports both OAuth (ADC) and API Key authentication.
+Supports both OAuth (ADC) and API Key authentication. Used by the Embedder 
+and Retriever to interact with Google's text-embedding-004 model.
 """
 
 import os
